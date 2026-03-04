@@ -40,6 +40,9 @@ const App = () => {
             .catch((err) => {
                 console.log(err);
             });
+
+        // To cleanup after push search button
+        setWord('');
     };
     //access variables from .env.local file stored in frontend file
     // console.log(process.env.REACT_APP_UNSPLASH_KEY);
