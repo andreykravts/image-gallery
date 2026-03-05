@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header';
 // integrate search
 import Search from './components/Search';
+import ImageCard from './components/ImageCard';
+import { Container, Row, Col } from 'react-bootstrap';
 
 //globla variable
 
@@ -18,7 +20,6 @@ const App = () => {
 
   //for images:
   const [images, setImages] = useState([]);
-  console.log(images);
 
   const handleSearchSubmit = (e) => {
     //with this method - page not gonna be reloaded each time when user ckick on button
@@ -37,7 +38,7 @@ const App = () => {
       //.then also return promise - I should resolve that promise with: .then
       .then((data) => {
         //work on setImages function:
-        setImages([data, ...images]);
+        setImages([{ ...data, title: word }, ...images]);
       })
       //if promise is rejected create catch:
       // When the Promise is rejected. - for example some error accured during fetch request
@@ -51,6 +52,10 @@ const App = () => {
   //access variables from .env.local file stored in frontend file
   // console.log(process.env.REACT_APP_UNSPLASH_KEY);
 
+  const handleDeleteImage = (id) => {
+    setImages(images.filter((image) => image.id !== id));
+  };
+
   return (
     <div className="App">
       {/* Header is html tag contain code from Header.js */}
@@ -61,6 +66,20 @@ const App = () => {
       {/* provide variables word, setWord to search */}
       {/* Now we can use properties word, setWord inside of search compounent  */}
       <Search word={word} setWord={setWord} handleSubmit={handleSearchSubmit} />
+      {/* when images length grater than zero than show ImageCard  */}
+      {/* !! convert images.length to boolean value */}
+      {/* mt-4 margin-top-4 */}
+      <Container className="mt-4">
+        <Row xs={1} md={2} lg={3}>
+          {images.map((image, index) => {
+            return (
+              <Col key={index} className="pb-3">
+                <ImageCard image={image} deleteImage={handleDeleteImage} />
+              </Col>
+            );
+          })}
+        </Row>
+      </Container>
     </div>
   );
 };
