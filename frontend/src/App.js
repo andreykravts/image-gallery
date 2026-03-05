@@ -16,6 +16,10 @@ const App = () => {
   //useState - it's react hook
   const [word, setWord] = useState('');
 
+  //for images:
+  const [images, setImages] = useState([]);
+  console.log(images);
+
   const handleSearchSubmit = (e) => {
     //with this method - page not gonna be reloaded each time when user ckick on button
     e.preventDefault();
@@ -32,7 +36,8 @@ const App = () => {
       .then((res) => res.json())
       //.then also return promise - I should resolve that promise with: .then
       .then((data) => {
-        console.log(data);
+        //work on setImages function:
+        setImages([data, ...images]);
       })
       //if promise is rejected create catch:
       // When the Promise is rejected. - for example some error accured during fetch request
