@@ -21,7 +21,7 @@ const Header = ({ title }) => {
         {/* With help of java script insert props.title */}
         {/* <Navbar.Brand href="/">{title}</Navbar.Brand> */}
         {/* this is java script syntax */}
-        <Logo style={{ maxWidth: '12rem', maxHeight: '2rem' }} />
+        <Logo alt={title} style={{ maxWidth: '12rem', maxHeight: '2rem' }} />
       </Container>
     </Navbar>
   );

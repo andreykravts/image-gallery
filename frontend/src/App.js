@@ -5,6 +5,7 @@ import Header from './components/Header';
 // integrate search
 import Search from './components/Search';
 import ImageCard from './components/ImageCard';
+import Welcome from './components/Welcome';
 import { Container, Row, Col } from 'react-bootstrap';
 
 //globla variable
@@ -72,15 +73,20 @@ const App = () => {
       {/* !! convert images.length to boolean value */}
       {/* mt-4 margin-top-4 */}
       <Container className="mt-4">
-        <Row xs={1} md={2} lg={3}>
-          {images.map((image, index) => {
-            return (
-              <Col key={index} className="pb-3">
-                <ImageCard image={image} deleteImage={handleDeleteImage} />
-              </Col>
-            );
-          })}
-        </Row>
+        {/* Welcome message if images is empty */}
+        {images.length ? (
+          <Row xs={1} md={2} lg={3}>
+            {images.map((image, index) => {
+              return (
+                <Col key={index} className="pb-3">
+                  <ImageCard image={image} deleteImage={handleDeleteImage} />
+                </Col>
+              );
+            })}
+          </Row>
+        ) : (
+          <Welcome />
+        )}
       </Container>
     </div>
   );
