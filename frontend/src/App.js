@@ -53,6 +53,8 @@ const App = () => {
   // console.log(process.env.REACT_APP_UNSPLASH_KEY);
 
   const handleDeleteImage = (id) => {
+    // action: input new filtred array - so array contain only images which id isn't matched to provided
+    //images - it's array
     setImages(images.filter((image) => image.id !== id));
   };
 

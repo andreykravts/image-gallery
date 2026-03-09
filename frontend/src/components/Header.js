@@ -1,9 +1,11 @@
 import React from 'react';
 import { Container, Navbar } from 'react-bootstrap';
+//for svg icon
+import { ReactComponent as Logo } from '../images/logo.svg';
 
 //navbar style object
 const navbarStyle = {
-  backgroundColor: 'lightblue',
+  backgroundColor: '#eeeeee',
 };
 
 //add parameter props
@@ -17,7 +19,9 @@ const Header = ({ title }) => {
     <Navbar style={navbarStyle} variant="light">
       <Container>
         {/* With help of java script insert props.title */}
-        <Navbar.Brand href="/">{title}</Navbar.Brand>
+        {/* <Navbar.Brand href="/">{title}</Navbar.Brand> */}
+        {/* this is java script syntax */}
+        <Logo style={{ maxWidth: '12rem', maxHeight: '2rem' }} />
       </Container>
     </Navbar>
   );
