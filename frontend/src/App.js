@@ -17,9 +17,11 @@ const App = () => {
   //useState - Returns a stateful value, and a function to update it.
   //useState return array so we do restructuring of array word - string setWord - function
   //useState - it's react hook
+  //here is deconsruction! For two variables
   const [word, setWord] = useState('');
 
   //for images:
+  //here is deconsruction! For two variables
   const [images, setImages] = useState([]);
 
   const handleSearchSubmit = (e) => {
@@ -39,6 +41,8 @@ const App = () => {
       //.then also return promise - I should resolve that promise with: .then
       .then((data) => {
         //work on setImages function:
+        //{ ...data, title: word } - this is new image
+        //we put new image in the start of array
         setImages([{ ...data, title: word }, ...images]);
       })
       //if promise is rejected create catch:
