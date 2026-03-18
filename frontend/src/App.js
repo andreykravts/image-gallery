@@ -10,7 +10,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 //globla variable
 
-const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
+const API_URL = process.env.API_URL || 'http://127.0.0.1:5050';
 
 // arrow function
 const App = () => {
@@ -34,7 +34,8 @@ const App = () => {
 
     //fetch return promise - I should resolve promise
     fetch(
-      `https://api.unsplash.com/photos/random/?query=${word}&client_id=${UNSPLASH_KEY}`,
+      // `https://api.unsplash.com/photos/random/?query=${word}&client_id=${UNSPLASH_KEY}`,
+      `${API_URL}/new-image?query=${word}`,
     )
       //resolve promise with .then
       .then((res) => res.json())

@@ -8,5 +8,14 @@
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "explicit"
 	},
-	"python.pythonPath": "api/.venv/scripts/python3"
+	"python.defaultInterpreterPath": "api/.venv/scripts/python3",
+	"[python]":{
+		"editor.defaultFormatter": "ms-python.black-formatter",
+		"editor.formatOnSave": true
+	},
+	
+	"pylint.enabled": true,
+	"flake8.enabled": true,
+	"flake8.args": ["--max-line-length=88"]
+
 }
