@@ -1,12 +1,39 @@
-# save this as app.py
-from flask import Flask
+import os
+from dotenv import load_dotenv
+from flask import Flask, request
+# python request used to send api request to third party services
+import requests
+
+
+load_dotenv(dotenv_path="./.env.local")
+
+# `https://api.unsplash.com/photos/random/?query=${word}&client_id=${UNSPLASH_KEY}`,
+UNSPLASH_URL="https://api.unsplash.com/photos/random"
+UNSPLASH_KEY=os.environ.get("UNSPLASH_KEY","")
+
+if not UNSPLASH_KEY:
+  raise EnvironmentError("Please create .env.local file and insert there UNSPLASH_KEY")
 
 print(__name__)
 app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "Hello, World!"
+  return "Hello, World!"
+  
+@app.route("/new-image")
+def new_image():
+  # request from the flask - used to get access to client requests
+  # get parameter from UI - JS
+  word=request.args.get("query")
+  headers={"Accept-Version":"v1","Authorization":f"Client-ID {UNSPLASH_KEY}"}
+  params={
+		"query": word
+	}
+  response=requests.get(url=UNSPLASH_URL,headers=headers, params=params)
+  data=response.json()
+  
+  return data
   
 if __name__ == "__main__":
   app.run(host="0.0.0.0",port=5050)
